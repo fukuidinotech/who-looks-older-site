@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Who Looks Older? — AI Age Battle</title>
-  <meta name="description" content="Point your camera at two faces. AI decides who looks older. Free for iOS and Android.">
+  <meta name="description" content="Point your camera at two faces. AI decides who looks older. Free on iOS.">
   <meta property="og:title" content="Who Looks Older? — AI Age Battle">
   <meta property="og:description" content="Point your camera at two faces. AI decides who looks older. No mercy.">
   <meta property="og:type" content="website">
@@ -162,12 +162,24 @@
 
     .store-btn.android {
       background: #1A1A1A;
-      color: #FFFFFF;
+      color: #555555;
       border: 1px solid #333333;
+      cursor: not-allowed;
+      pointer-events: none;
+      position: relative;
     }
 
-    .store-btn.android:hover {
-      box-shadow: 0 8px 24px rgba(228, 255, 26, 0.1);
+    .store-btn.android::after {
+      content: 'Coming soon';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #E4FF1A;
+      color: #111111;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
     }
 
     .store-btn svg {
