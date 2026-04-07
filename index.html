@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Looks Older? — AI Age Battle</title>
+  <meta name="description" content="Point your camera at two faces. AI decides who looks older. Free for iOS and Android.">
+  <meta property="og:title" content="Who Looks Older? — AI Age Battle">
+  <meta property="og:description" content="Point your camera at two faces. AI decides who looks older. No mercy.">
+  <meta property="og:type" content="website">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #111111;
+      color: #FFFFFF;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(228, 255, 26, 0.15) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid #333333;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #888888;
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    h1 .accent {
+      color: #E4FF1A;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: #888888;
+      margin-bottom: 48px;
+      max-width: 400px;
+    }
+
+    .vs-display {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .face-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .face-circle.left {
+      border: 3px solid #E4FF1A;
+      box-shadow: 0 0 24px rgba(228, 255, 26, 0.2);
+    }
+
+    .face-circle.right {
+      border: 3px solid #333333;
+    }
+
+    .vs-text {
+      font-family: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: #E4FF1A;
+      text-shadow: 0 0 24px rgba(228, 255, 26, 0.5);
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      background: #1A1A1A;
+      border: 1px solid #333333;
+      border-radius: 50px;
+      font-family: 'Geist Mono', 'SF Mono', monospace;
+      font-size: 0.75rem;
+      color: #888888;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .store-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .store-btn.ios {
+      background: #FFFFFF;
+      color: #111111;
+    }
+
+    .store-btn.ios:hover {
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+    }
+
+    .store-btn.android {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      border: 1px solid #333333;
+    }
+
+    .store-btn.android:hover {
+      box-shadow: 0 8px 24px rgba(228, 255, 26, 0.1);
+    }
+
+    .store-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* How it works */
+    .section {
+      padding: 80px 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      color: #E4FF1A;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .steps {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 220px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1A1A1A;
+      border: 2px solid #E4FF1A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-family: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: #E4FF1A;
+    }
+
+    .step h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #888888;
+      font-size: 0.9rem;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #1A1A1A;
+      border: 1px solid #333333;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #888888;
+      font-size: 0.85rem;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: #1A1A1A;
+      border: 1px solid #333333;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin: 48px auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .disclaimer p {
+      color: #888888;
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #333333;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #888888;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .footer-links a:hover {
+      color: #E4FF1A;
+    }
+
+    .footer .copyright {
+      color: #555555;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="hero-badge">AI-Powered Face Battle</span>
+
+    <h1>Who Looks<br><span class="accent">Older?</span></h1>
+
+    <p class="tagline">Point your camera at two faces. AI decides who looks older. No mercy.</p>
+
+    <div class="vs-display">
+      <div class="face-circle left">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="60" height="60">
+          <circle cx="40" cy="28" r="24" fill="#E4FF1A" fill-opacity="0.15" stroke="#E4FF1A" stroke-width="2.5"/>
+          <path d="M20,22 Q22,16 28,14" fill="none" stroke="#E4FF1A" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
+          <path d="M52,14 Q58,16 60,22" fill="none" stroke="#E4FF1A" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="40" cy="44" r="18" fill="#E4FF1A" fill-opacity="0.1" stroke="#E4FF1A" stroke-width="3"/>
+          <path d="M30,41 Q34,38 38,41" fill="none" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="34" cy="41" r="1.5" fill="#E4FF1A"/>
+          <path d="M42,41 Q46,38 50,41" fill="none" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="46" cy="41" r="1.5" fill="#E4FF1A"/>
+          <line x1="29" y1="36" x2="38" y2="34" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="51" y1="36" x2="42" y2="34" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M30,50 Q40,58 50,50" fill="none" stroke="#E4FF1A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M35,52 L37,50 L39,52 L41,50 L43,52 L45,50" fill="none" stroke="#E4FF1A" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="60" y1="16" x2="60" y2="8" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="56" y1="12" x2="64" y2="12" stroke="#E4FF1A" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="vs-text">VS</span>
+      <div class="face-circle right">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="60" height="60">
+          <circle cx="24" cy="20" r="7" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="2"/>
+          <circle cx="36" cy="14" r="8" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="2"/>
+          <circle cx="50" cy="15" r="7.5" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="2"/>
+          <circle cx="58" cy="22" r="6" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="2"/>
+          <circle cx="20" cy="30" r="5" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="1.5"/>
+          <circle cx="62" cy="30" r="4.5" fill="#888888" fill-opacity="0.1" stroke="#888888" stroke-width="1.5"/>
+          <circle cx="40" cy="44" r="18" fill="#888888" fill-opacity="0.06" stroke="#888888" stroke-width="2.5"/>
+          <circle cx="32" cy="40" r="6.5" fill="none" stroke="#888888" stroke-width="2.5"/>
+          <circle cx="32" cy="41" r="3.5" fill="#888888"/>
+          <circle cx="33.2" cy="39.5" r="1.2" fill="#1A1A1A"/>
+          <circle cx="48" cy="40" r="6.5" fill="none" stroke="#888888" stroke-width="2.5"/>
+          <circle cx="48" cy="41" r="3.5" fill="#888888"/>
+          <circle cx="49.2" cy="39.5" r="1.2" fill="#1A1A1A"/>
+          <path d="M24,28 Q32,24 40,30" fill="none" stroke="#888888" stroke-width="3" stroke-linecap="round"/>
+          <path d="M56,28 Q48,24 40,30" fill="none" stroke="#888888" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="40" cy="55" rx="6" ry="7" fill="#888888" fill-opacity="0.2" stroke="#888888" stroke-width="2.5"/>
+          <line x1="10" y1="36" x2="4" y2="34" stroke="#888888" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="10" y1="44" x2="2" y2="46" stroke="#888888" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="70" y1="36" x2="76" y2="34" stroke="#888888" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="70" y1="44" x2="78" y2="46" stroke="#888888" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip">AI Judge</span>
+      <span class="chip">2 Player</span>
+      <span class="chip">Instant</span>
+      <span class="chip">Free</span>
+    </div>
+
+    <div class="store-buttons">
+      <a href="#" class="store-btn ios">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="store-btn android">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.52-1.28 1.23-.93l14.54 8.5c.71.41.71 1.45 0 1.86L4.23 21.43c-.71.35-1.23-.1-1.23-.93z"/></svg>
+        Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Point</h3>
+        <p>Open the camera and get two faces in frame.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Scan</h3>
+        <p>Tap "Scan Now" and let the AI analyze both faces.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Battle!</h3>
+        <p>See who looks older and share the result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <h2 class="section-title">Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">&#129302;</div>
+        <h3>On-Device AI</h3>
+        <p>All face analysis runs on your phone. No images are uploaded or saved anywhere.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#9889;</div>
+        <h3>Instant Results</h3>
+        <p>Get age estimates in seconds with a dramatic reveal animation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128248;</div>
+        <h3>Share Card</h3>
+        <p>Generate a 9:16 battle card with results, perfect for Stories and Reels.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128274;</div>
+        <h3>Privacy First</h3>
+        <p>Zero data collection. Your face never leaves your device. Period.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <p>AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon. Intended for users 13 and older.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="mailto:fukuidinotech@gmail.com">Contact</a>
+    </div>
+    <p class="copyright">&copy; 2026 Who Looks Older? &mdash; All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
