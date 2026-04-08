@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,97 +98,234 @@
       color: #888888;
       font-size: 0.85rem;
     }
+
+    /* Language switcher */
+    .lang-switch {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .lang-switch select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #333333;
+      border-radius: 50px;
+      padding: 8px 36px 8px 16px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%23E4FF1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    .lang-switch select:focus {
+      outline: none;
+      border-color: #E4FF1A;
+    }
+
+    .lang-switch option {
+      background: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    [data-lang] { display: none; }
+    [data-lang].active { display: block; }
   </style>
 </head>
 <body>
+
+  <!-- Language switcher -->
+  <div class="lang-switch">
+    <select id="langSelect" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+
   <div class="container">
 
-    <h1>Terms of Service</h1>
-    <p class="effective-date">Effective Date: March 29, 2026</p>
+    <!-- ============ ENGLISH ============ -->
+    <div data-lang="en">
+      <h1>Terms of Service</h1>
+      <p class="effective-date">Effective Date: March 29, 2026</p>
 
-    <p>These Terms of Service ("Terms") govern your use of Who Looks Older? ("the App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
+      <p>These Terms of Service ("Terms") govern your use of Who Looks Older? ("the App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
 
-    <!-- 1. Description -->
-    <h2>1. Description of the App</h2>
+      <h2>1. Description of the App</h2>
 
-    <p>Who Looks Older? is an entertainment app that uses on-device AI to estimate the apparent age of two people from a live camera feed. Results are generated for fun and are not intended to be accurate or relied upon for any purpose.</p>
+      <p>Who Looks Older? is an entertainment app that uses on-device AI to estimate the apparent age of two people from a live camera feed. Results are generated for fun and are not intended to be accurate or relied upon for any purpose.</p>
 
-    <!-- 2. Eligibility -->
-    <h2>2. Eligibility</h2>
+      <h2>2. Eligibility</h2>
 
-    <p>You must be at least 13 years of age to use the App. By using the App, you represent and warrant that you meet this age requirement. If you are under 18, you represent that your parent or legal guardian has reviewed and agreed to these Terms on your behalf.</p>
+      <p>You must be at least 13 years of age to use the App. By using the App, you represent and warrant that you meet this age requirement. If you are under 18, you represent that your parent or legal guardian has reviewed and agreed to these Terms on your behalf.</p>
 
-    <!-- 3. Acceptable Use -->
-    <h2>3. Acceptable Use</h2>
+      <h2>3. Acceptable Use</h2>
 
-    <p>You agree not to use the App to:</p>
-    <ul>
-      <li>Harass, bully, or demean any person based on age, appearance, or any other characteristic.</li>
-      <li>Capture or share images of individuals without their knowledge or consent.</li>
-      <li>Use the App's output to make decisions about employment, insurance, lending, or any other consequential purpose.</li>
-      <li>Reverse-engineer, decompile, or attempt to extract the source code or AI models of the App.</li>
-      <li>Circumvent, disable, or interfere with security or access-control features of the App.</li>
-    </ul>
+      <p>You agree not to use the App to:</p>
+      <ul>
+        <li>Harass, bully, or demean any person based on age, appearance, or any other characteristic.</li>
+        <li>Capture or share images of individuals without their knowledge or consent.</li>
+        <li>Use the App's output to make decisions about employment, insurance, lending, or any other consequential purpose.</li>
+        <li>Reverse-engineer, decompile, or attempt to extract the source code or AI models of the App.</li>
+        <li>Circumvent, disable, or interfere with security or access-control features of the App.</li>
+      </ul>
 
-    <!-- 4. Disclaimer -->
-    <h2>4. Disclaimer of Accuracy</h2>
+      <h2>4. Disclaimer of Accuracy</h2>
 
-    <div class="highlight">
-      <p><strong>The App provides AI-powered age estimates for entertainment purposes only.</strong> Results are not accurate and should not be interpreted as a factual determination of anyone's age. No medical, legal, or personal decisions should be based on the App's output.</p>
+      <div class="highlight">
+        <p><strong>The App provides AI-powered age estimates for entertainment purposes only.</strong> Results are not accurate and should not be interpreted as a factual determination of anyone's age. No medical, legal, or personal decisions should be based on the App's output.</p>
+      </div>
+
+      <h2>5. In-App Purchases</h2>
+
+      <p>The App may offer optional in-app purchases (e.g., watermark removal, ad removal) through the Apple App Store or Google Play Store. All purchases are processed by the respective platform and are subject to their terms and refund policies. We do not process payments directly.</p>
+
+      <h2>6. Advertisements</h2>
+
+      <p>The free version of the App displays advertisements provided by Google AdMob. Ad personalization on iOS requires your consent via Apple's App Tracking Transparency (ATT) prompt. You may decline tracking, in which case non-personalized ads will be shown.</p>
+
+      <h2>7. Intellectual Property</h2>
+
+      <p>All content, design, code, and AI models in the App are owned by or licensed to us. You may not copy, modify, distribute, or create derivative works based on the App, except as expressly permitted by applicable law.</p>
+
+      <h2>8. Privacy</h2>
+
+      <p>Your privacy is important to us. Please review our <a href="privacy-policy.html">Privacy Policy</a>, which explains how the App handles your information. By using the App, you agree to the practices described in the Privacy Policy.</p>
+
+      <h2>9. Limitation of Liability</h2>
+
+      <p>To the maximum extent permitted by applicable law, the App is provided "as is" and "as available" without warranties of any kind, whether express or implied. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</p>
+
+      <h2>10. Termination</h2>
+
+      <p>We reserve the right to suspend or terminate your access to the App at any time, for any reason, without notice. You may stop using the App at any time by uninstalling it from your device.</p>
+
+      <h2>11. Changes to These Terms</h2>
+
+      <p>We may update these Terms from time to time. Any changes will be reflected on this page with a revised effective date. Continued use of the App after changes are posted constitutes acceptance of the updated Terms.</p>
+
+      <h2>12. Governing Law</h2>
+
+      <p>These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions.</p>
+
+      <h2>13. Contact Us</h2>
+
+      <div class="contact-box">
+        <p>If you have any questions about these Terms, please contact us at:</p>
+        <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      </div>
     </div>
 
-    <!-- 5. In-App Purchases -->
-    <h2>5. In-App Purchases</h2>
+    <!-- ============ JAPANESE ============ -->
+    <div data-lang="ja">
+      <h1>利用規約</h1>
+      <p class="effective-date">発効日: 2026年3月29日</p>
 
-    <p>The App may offer optional in-app purchases (e.g., watermark removal, ad removal) through the Apple App Store or Google Play Store. All purchases are processed by the respective platform and are subject to their terms and refund policies. We do not process payments directly.</p>
+      <p>これらの利用規約（以下「本規約」）は Who Looks Older?（以下「本アプリ」）の利用を規定します。本アプリをダウンロード、インストール、または使用することにより、あなたは本規約に同意したものとみなされます。同意しない場合は、本アプリを使用しないでください。</p>
 
-    <!-- 6. Advertisements -->
-    <h2>6. Advertisements</h2>
+      <h2>1. 本アプリの説明</h2>
 
-    <p>The free version of the App displays advertisements provided by Google AdMob. Ad personalization on iOS requires your consent via Apple's App Tracking Transparency (ATT) prompt. You may decline tracking, in which case non-personalized ads will be shown.</p>
+      <p>Who Looks Older? は端末内AIを使用して、ライブカメラ映像から2人の見た目の年齢を推定するエンタメアプリです。結果は遊びのために生成されるものであり、正確であることや、いかなる目的でも信頼することは想定されていません。</p>
 
-    <!-- 7. Intellectual Property -->
-    <h2>7. Intellectual Property</h2>
+      <h2>2. 利用資格</h2>
 
-    <p>All content, design, code, and AI models in the App are owned by or licensed to us. You may not copy, modify, distribute, or create derivative works based on the App, except as expressly permitted by applicable law.</p>
+      <p>本アプリを使用するには13歳以上である必要があります。本アプリを使用することにより、あなたはこの年齢要件を満たしていることを表明し保証します。18歳未満の場合、保護者または法定後見人が本規約を確認し、あなたに代わって同意していることを表明します。</p>
 
-    <!-- 8. Privacy -->
-    <h2>8. Privacy</h2>
+      <h2>3. 利用条件</h2>
 
-    <p>Your privacy is important to us. Please review our <a href="privacy-policy.html">Privacy Policy</a>, which explains how the App handles your information. By using the App, you agree to the practices described in the Privacy Policy.</p>
+      <p>本アプリを以下の目的で使用しないことに同意します:</p>
+      <ul>
+        <li>年齢、外見、その他の特性に基づいて、いかなる人物にも嫌がらせ、いじめ、侮辱を行うこと。</li>
+        <li>本人の認識または同意なく個人の画像を取得または共有すること。</li>
+        <li>雇用、保険、融資、その他重大な目的の判断材料として本アプリの出力を使用すること。</li>
+        <li>本アプリのソースコードやAIモデルをリバースエンジニアリング、逆コンパイル、抽出を試みること。</li>
+        <li>本アプリのセキュリティやアクセス制御機能を回避、無効化、妨害すること。</li>
+      </ul>
 
-    <!-- 9. Limitation of Liability -->
-    <h2>9. Limitation of Liability</h2>
+      <h2>4. 正確性に関する免責</h2>
 
-    <p>To the maximum extent permitted by applicable law, the App is provided "as is" and "as available" without warranties of any kind, whether express or implied. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the App.</p>
+      <div class="highlight">
+        <p><strong>本アプリはAIを使った年齢推定をエンタメ目的で提供します。</strong> 結果は正確ではなく、誰かの年齢を事実として判定するものとして解釈すべきではありません。医療、法律、個人的な決定を本アプリの出力に基づいて行うべきではありません。</p>
+      </div>
 
-    <!-- 10. Termination -->
-    <h2>10. Termination</h2>
+      <h2>5. アプリ内課金</h2>
 
-    <p>We reserve the right to suspend or terminate your access to the App at any time, for any reason, without notice. You may stop using the App at any time by uninstalling it from your device.</p>
+      <p>本アプリは Apple App Store または Google Play ストアを通じて任意のアプリ内課金（広告除去など）を提供する場合があります。すべての購入は各プラットフォームによって処理され、各社の規約および返金ポリシーが適用されます。当方は決済を直接処理しません。</p>
 
-    <!-- 11. Changes -->
-    <h2>11. Changes to These Terms</h2>
+      <h2>6. 広告</h2>
 
-    <p>We may update these Terms from time to time. Any changes will be reflected on this page with a revised effective date. Continued use of the App after changes are posted constitutes acceptance of the updated Terms.</p>
+      <p>無料版の本アプリでは Google AdMob が提供する広告を表示します。iOSにおける広告のパーソナライズにはAppleのApp Tracking Transparency（ATT）プロンプトでの同意が必要です。トラッキングを拒否した場合、パーソナライズされていない広告が表示されます。</p>
 
-    <!-- 12. Governing Law -->
-    <h2>12. Governing Law</h2>
+      <h2>7. 知的財産</h2>
 
-    <p>These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions.</p>
+      <p>本アプリ内のすべてのコンテンツ、デザイン、コード、AIモデルは当方が所有またはライセンスを受けたものです。適用法によって明示的に許可されている場合を除き、本アプリを複製、改変、配布、または派生物を作成することはできません。</p>
 
-    <!-- 13. Contact -->
-    <h2>13. Contact Us</h2>
+      <h2>8. プライバシー</h2>
 
-    <div class="contact-box">
-      <p>If you have any questions about these Terms, please contact us at:</p>
-      <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      <p>あなたのプライバシーは当方にとって重要です。本アプリがあなたの情報をどのように扱うかは、<a href="privacy-policy.html">プライバシーポリシー</a>をご確認ください。本アプリを使用することにより、あなたはプライバシーポリシーに記載された慣行に同意するものとします。</p>
+
+      <h2>9. 責任の制限</h2>
+
+      <p>適用法で許される最大限の範囲において、本アプリは「現状のまま」「利用可能な範囲で」提供され、明示的または黙示的な保証は一切ありません。当方は本アプリの使用に起因または関連する間接的、付随的、特別、結果的、または懲罰的損害について一切責任を負いません。</p>
+
+      <h2>10. 終了</h2>
+
+      <p>当方は、いつでも、いかなる理由でも、通知なしにあなたの本アプリへのアクセスを停止または終了する権利を留保します。あなたは端末からアンインストールすることでいつでも本アプリの使用を停止できます。</p>
+
+      <h2>11. 規約の変更</h2>
+
+      <p>当方は随時本規約を更新する場合があります。変更があった場合はこのページに反映され、発効日が更新されます。変更後の本アプリの継続使用は、更新された規約への同意とみなされます。</p>
+
+      <h2>12. 準拠法</h2>
+
+      <p>本規約は日本国の法令に準拠し、これに従って解釈されるものとします。法の抵触に関する規定は除きます。</p>
+
+      <h2>13. お問い合わせ</h2>
+
+      <div class="contact-box">
+        <p>本規約に関するご質問は下記までご連絡ください:</p>
+        <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      </div>
+
+      <p style="color:#888888; font-size:0.85rem; margin-top:24px;">注: この日本語訳は参考であり、英語版が正本となります。</p>
     </div>
 
     <div class="footer">
-      <p>&copy; 2026 Who Looks Older? &mdash; All rights reserved.</p>
+      <p>&copy; 2026 Who Looks Older?</p>
     </div>
 
   </div>
+
+  <script>
+    function applyLang(lang) {
+      if (lang !== "en" && lang !== "ja") lang = "en";
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-lang]").forEach(el => {
+        el.classList.toggle("active", el.dataset.lang === lang);
+      });
+      const sel = document.getElementById("langSelect");
+      if (sel) sel.value = lang;
+      try { localStorage.setItem("wlo_lang", lang); } catch (_) {}
+    }
+
+    (function init() {
+      const params = new URLSearchParams(location.search);
+      const fromUrl = params.get("lang");
+      let stored = null;
+      try { stored = localStorage.getItem("wlo_lang"); } catch (_) {}
+      const browser = (navigator.language || "en").toLowerCase().startsWith("ja") ? "ja" : "en";
+      applyLang(fromUrl || stored || browser);
+      const sel = document.getElementById("langSelect");
+      if (sel) sel.addEventListener("change", e => applyLang(e.target.value));
+    })();
+  </script>
 </body>
 </html>

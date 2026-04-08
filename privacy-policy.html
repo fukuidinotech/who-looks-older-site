@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,113 +98,270 @@
       color: #888888;
       font-size: 0.85rem;
     }
+
+    /* Language switcher */
+    .lang-switch {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .lang-switch select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #333333;
+      border-radius: 50px;
+      padding: 8px 36px 8px 16px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%23E4FF1A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    .lang-switch select:focus {
+      outline: none;
+      border-color: #E4FF1A;
+    }
+
+    .lang-switch option {
+      background: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    [data-lang] { display: none; }
+    [data-lang].active { display: block; }
   </style>
 </head>
 <body>
+
+  <!-- Language switcher -->
+  <div class="lang-switch">
+    <select id="langSelect" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div>
+
   <div class="container">
 
-    <h1>Privacy Policy</h1>
-    <p class="effective-date">Effective Date: March 28, 2026</p>
+    <!-- ============ ENGLISH ============ -->
+    <div data-lang="en">
+      <h1>Privacy Policy</h1>
+      <p class="effective-date">Effective Date: March 28, 2026</p>
 
-    <p>Who Looks Older? ("the App", "we", "us", or "our") is an AI-powered entertainment app that estimates the apparent age of two people from a live camera feed and declares which one "looks older." It is designed purely for fun and is not intended to provide accurate age assessments.</p>
+      <p>Who Looks Older? ("the App", "we", "us", or "our") is an AI-powered entertainment app that estimates the apparent age of two people from a live camera feed and declares which one "looks older." It is designed purely for fun and is not intended to provide accurate age assessments.</p>
 
-    <p>This Privacy Policy explains how the App handles your information. We are committed to transparency and to protecting your privacy.</p>
+      <p>This Privacy Policy explains how the App handles your information. We are committed to transparency and to protecting your privacy.</p>
 
-    <!-- 1. Face Data & Camera Usage -->
-    <h2>1. Camera &amp; Face Data</h2>
+      <h2>1. Camera &amp; Face Data</h2>
 
-    <div class="highlight">
-      <p><strong>All face processing happens entirely on your device.</strong> No face images, facial geometry, or biometric data are ever saved to disk, uploaded to a server, or transmitted over any network.</p>
+      <div class="highlight">
+        <p><strong>All face processing happens entirely on your device.</strong> No face images, facial geometry, or biometric data are ever saved to disk, uploaded to a server, or transmitted over any network.</p>
+      </div>
+
+      <p>The App uses your device camera to:</p>
+      <ul>
+        <li>Detect faces in real time using Google ML Kit (on-device).</li>
+        <li>Estimate apparent age using a TensorFlow Lite model (on-device).</li>
+      </ul>
+
+      <p>Camera frames are processed in memory in real time and immediately discarded. The only output retained is the estimated age as a simple integer, which is held temporarily in memory for displaying results and is not persisted after you close the App.</p>
+
+      <h2>2. Biometric Data (BIPA / GDPR / State Laws)</h2>
+
+      <p>The App processes facial geometry transiently in device memory solely to produce an age estimate. This data:</p>
+      <ul>
+        <li>Is never written to persistent storage (disk, database, or file system).</li>
+        <li>Is never transmitted to any server, cloud service, or third party.</li>
+        <li>Is never used to identify any individual.</li>
+        <li>Exists only for the fraction of a second needed to run inference, then is freed from memory.</li>
+      </ul>
+
+      <p>Because no biometric identifiers or biometric information are collected, stored, or shared, the App's processing does not constitute "collection" of biometric data under the Illinois Biometric Information Privacy Act (BIPA), the EU General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), or similar statutes.</p>
+
+      <h2>3. Data We Collect</h2>
+
+      <p>The App itself does not collect, store, or transmit any personal data. However, the following third-party services integrated into the App may collect certain information:</p>
+
+      <h2>4. Third-Party Services</h2>
+
+      <p><strong>Google AdMob</strong> - We use AdMob to display advertisements. AdMob may collect device identifiers, IP address, and usage data for ad serving and personalization. On iOS, ad personalization requires your consent via Apple's App Tracking Transparency (ATT) prompt. If you decline tracking, AdMob will serve non-personalized ads only.</p>
+      <ul>
+        <li>Google Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></li>
+        <li>How Google uses data from partner apps: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">https://policies.google.com/technologies/partner-sites</a></li>
+      </ul>
+
+      <p><strong>RevenueCat</strong> - We use RevenueCat to manage in-app purchases (watermark removal and ad removal). RevenueCat may process purchase receipts and anonymized transaction data.</p>
+      <ul>
+        <li>RevenueCat Privacy Policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">https://www.revenuecat.com/privacy</a></li>
+      </ul>
+
+      <h2>5. Children's Privacy (COPPA)</h2>
+
+      <p>Who Looks Older? is intended for users aged 13 and older. We do not knowingly collect personal information from children under the age of 13. If you are a parent or guardian and believe your child under 13 has used the App, please contact us at the address below and we will take steps to address your concern.</p>
+
+      <h2>6. App Tracking Transparency (iOS)</h2>
+
+      <p>On iOS, the App will request your permission via Apple's ATT framework before allowing AdMob to access your device's advertising identifier (IDFA). You can change this setting at any time in your device's Settings &gt; Privacy &amp; Security &gt; Tracking.</p>
+
+      <h2>7. Data Retention</h2>
+
+      <p>The App does not persist any user data. Estimated age values are held in volatile memory only during a game session and are discarded when you leave the result screen or close the App. No data is written to local storage or remote servers by the App.</p>
+
+      <h2>8. Your Rights</h2>
+
+      <p>Depending on your jurisdiction, you may have rights regarding your personal data, including the right to access, correct, delete, or restrict its processing. Because the App does not collect or store personal data, there is generally no data for us to provide, correct, or delete.</p>
+
+      <p>For any data collected by third-party services (AdMob, RevenueCat), please refer to their respective privacy policies linked above, or contact us and we will assist where possible.</p>
+
+      <h2>9. Security</h2>
+
+      <p>Since all face processing occurs on-device and no personal data is transmitted or stored by the App, the primary security measure is the architecture itself: your data never leaves your device. We do not operate servers that receive or store user data.</p>
+
+      <h2>10. Changes to This Policy</h2>
+
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with a revised effective date. We encourage you to review this policy periodically. Continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
+
+      <h2>11. Contact Us</h2>
+
+      <div class="contact-box">
+        <p>If you have any questions, concerns, or data-related requests regarding this Privacy Policy, please contact us at:</p>
+        <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      </div>
+
+      <h2>12. Disclaimer</h2>
+
+      <p>Who Looks Older? provides AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon for any purpose. The App does not claim to determine actual age, and no decisions should be made based on its output.</p>
     </div>
 
-    <p>The App uses your device camera to:</p>
-    <ul>
-      <li>Detect faces in real time using Google ML Kit (on-device).</li>
-      <li>Estimate apparent age using a TensorFlow Lite model (on-device).</li>
-    </ul>
+    <!-- ============ JAPANESE ============ -->
+    <div data-lang="ja">
+      <h1>プライバシーポリシー</h1>
+      <p class="effective-date">発効日: 2026年3月28日</p>
 
-    <p>Camera frames are processed in memory in real time and immediately discarded. The only output retained is the estimated age as a simple integer, which is held temporarily in memory for displaying results and is not persisted after you close the App.</p>
+      <p>Who Looks Older?（以下「本アプリ」「当方」）はAIを活用したエンタメアプリで、カメラに映った2人の見た目の年齢を推定し、どちらが「年上に見えるか」を判定します。あくまで遊びを目的としており、正確な年齢判定を提供するものではありません。</p>
 
-    <!-- 2. Biometric Data -->
-    <h2>2. Biometric Data (BIPA / GDPR / State Laws)</h2>
+      <p>このプライバシーポリシーは、本アプリがあなたの情報をどのように扱うかを説明します。当方は透明性とプライバシー保護に努めています。</p>
 
-    <p>The App processes facial geometry transiently in device memory solely to produce an age estimate. This data:</p>
-    <ul>
-      <li>Is never written to persistent storage (disk, database, or file system).</li>
-      <li>Is never transmitted to any server, cloud service, or third party.</li>
-      <li>Is never used to identify any individual.</li>
-      <li>Exists only for the fraction of a second needed to run inference, then is freed from memory.</li>
-    </ul>
+      <h2>1. カメラと顔データ</h2>
 
-    <p>Because no biometric identifiers or biometric information are collected, stored, or shared, the App's processing does not constitute "collection" of biometric data under the Illinois Biometric Information Privacy Act (BIPA), the EU General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), or similar statutes.</p>
+      <div class="highlight">
+        <p><strong>顔の処理はすべてあなたの端末内で完結します。</strong> 顔画像、顔の幾何データ、生体情報がディスクに保存されたり、サーバーにアップロードされたり、ネットワークを介して送信されることは一切ありません。</p>
+      </div>
 
-    <!-- 3. Data Collection -->
-    <h2>3. Data We Collect</h2>
+      <p>本アプリはカメラを以下の目的で使用します:</p>
+      <ul>
+        <li>Google ML Kit（オンデバイス）でリアルタイムに顔を検出</li>
+        <li>TensorFlow Lite モデル（オンデバイス）で見た目の年齢を推定</li>
+      </ul>
 
-    <p>The App itself does not collect, store, or transmit any personal data. However, the following third-party services integrated into the App may collect certain information:</p>
+      <p>カメラのフレームはメモリ内でリアルタイム処理され、即座に破棄されます。残るのは推定年齢の整数値のみで、結果表示のため一時的にメモリ内に保持され、アプリを閉じた後は保持されません。</p>
 
-    <h2>4. Third-Party Services</h2>
+      <h2>2. 生体データ（BIPA / GDPR / 各州法）</h2>
 
-    <p><strong>Google AdMob</strong> — We use AdMob to display advertisements. AdMob may collect device identifiers, IP address, and usage data for ad serving and personalization. On iOS, ad personalization requires your consent via Apple's App Tracking Transparency (ATT) prompt. If you decline tracking, AdMob will serve non-personalized ads only.</p>
-    <ul>
-      <li>Google Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></li>
-      <li>How Google uses data from partner apps: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">https://policies.google.com/technologies/partner-sites</a></li>
-    </ul>
+      <p>本アプリは年齢推定を行うために、顔の幾何データを端末メモリ内で一時的に処理します。このデータは:</p>
+      <ul>
+        <li>永続的なストレージ（ディスク、データベース、ファイルシステム）に書き込まれることはありません。</li>
+        <li>サーバー、クラウドサービス、第三者に送信されることはありません。</li>
+        <li>個人を特定する目的で使用されることはありません。</li>
+        <li>推論の実行に必要なごく短時間のみ存在し、その後メモリから解放されます。</li>
+      </ul>
 
-    <p><strong>RevenueCat</strong> — We use RevenueCat to manage in-app purchases (watermark removal and ad removal). RevenueCat may process purchase receipts and anonymized transaction data.</p>
-    <ul>
-      <li>RevenueCat Privacy Policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">https://www.revenuecat.com/privacy</a></li>
-    </ul>
+      <p>生体識別子や生体情報を収集・保存・共有しないため、本アプリの処理はイリノイ州生体情報プライバシー法（BIPA）、EU一般データ保護規則（GDPR）、カリフォルニア州消費者プライバシー法（CCPA）等における生体データの「収集」には該当しません。</p>
 
-    <!-- 5. Children -->
-    <h2>5. Children's Privacy (COPPA)</h2>
+      <h2>3. 当方が収集するデータ</h2>
 
-    <p>Who Looks Older? is intended for users aged 13 and older. We do not knowingly collect personal information from children under the age of 13. If you are a parent or guardian and believe your child under 13 has used the App, please contact us at the address below and we will take steps to address your concern.</p>
+      <p>本アプリ自体は個人データを一切収集、保存、送信しません。ただし、本アプリに統合されている以下のサードパーティサービスが特定の情報を収集する場合があります。</p>
 
-    <!-- 6. App Tracking Transparency -->
-    <h2>6. App Tracking Transparency (iOS)</h2>
+      <h2>4. サードパーティサービス</h2>
 
-    <p>On iOS, the App will request your permission via Apple's ATT framework before allowing AdMob to access your device's advertising identifier (IDFA). You can change this setting at any time in your device's Settings &gt; Privacy &amp; Security &gt; Tracking.</p>
+      <p><strong>Google AdMob</strong> - 広告表示にAdMobを使用しています。AdMobは広告配信およびパーソナライズのため、デバイス識別子、IPアドレス、利用データを収集する場合があります。iOSでは、広告のパーソナライズにはAppleのApp Tracking Transparency（ATT）プロンプトでの同意が必要です。トラッキングを拒否した場合、AdMobはパーソナライズされていない広告のみを配信します。</p>
+      <ul>
+        <li>Google プライバシーポリシー: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></li>
+        <li>Googleがパートナーアプリのデータをどう使用するか: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">https://policies.google.com/technologies/partner-sites</a></li>
+      </ul>
 
-    <!-- 7. Data Retention -->
-    <h2>7. Data Retention</h2>
+      <p><strong>RevenueCat</strong> - アプリ内課金（広告除去）の管理にRevenueCatを使用しています。RevenueCatは購入レシートと匿名化された取引データを処理する場合があります。</p>
+      <ul>
+        <li>RevenueCat プライバシーポリシー: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">https://www.revenuecat.com/privacy</a></li>
+      </ul>
 
-    <p>The App does not persist any user data. Estimated age values are held in volatile memory only during a game session and are discarded when you leave the result screen or close the App. No data is written to local storage or remote servers by the App.</p>
+      <h2>5. 児童のプライバシー（COPPA）</h2>
 
-    <!-- 8. Your Rights -->
-    <h2>8. Your Rights</h2>
+      <p>Who Looks Older? は13歳以上のユーザーを対象としています。13歳未満の児童から個人情報を意図的に収集することはありません。13歳未満のお子様が本アプリを使用したと思われる場合、保護者の方は下記の連絡先までご連絡ください。適切な対応を行います。</p>
 
-    <p>Depending on your jurisdiction, you may have rights regarding your personal data, including the right to access, correct, delete, or restrict its processing. Because the App does not collect or store personal data, there is generally no data for us to provide, correct, or delete.</p>
+      <h2>6. App Tracking Transparency（iOS）</h2>
 
-    <p>For any data collected by third-party services (AdMob, RevenueCat), please refer to their respective privacy policies linked above, or contact us and we will assist where possible.</p>
+      <p>iOSでは、AdMobがデバイスの広告識別子（IDFA）にアクセスする前に、AppleのATTフレームワークを通じて許可を求めます。設定はいつでも 設定 &gt; プライバシーとセキュリティ &gt; トラッキング から変更できます。</p>
 
-    <!-- 9. Security -->
-    <h2>9. Security</h2>
+      <h2>7. データの保持</h2>
 
-    <p>Since all face processing occurs on-device and no personal data is transmitted or stored by the App, the primary security measure is the architecture itself: your data never leaves your device. We do not operate servers that receive or store user data.</p>
+      <p>本アプリはユーザーデータを永続的に保持しません。推定年齢の値はゲームセッション中のみ揮発性メモリに保持され、結果画面を離れるかアプリを閉じると破棄されます。本アプリによってローカルストレージやリモートサーバーに書き込まれるデータはありません。</p>
 
-    <!-- 10. Changes -->
-    <h2>10. Changes to This Policy</h2>
+      <h2>8. あなたの権利</h2>
 
-    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with a revised effective date. We encourage you to review this policy periodically. Continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
+      <p>お住まいの地域によっては、個人データに関する権利（アクセス、訂正、削除、処理の制限など）を有する場合があります。本アプリは個人データを収集・保存していないため、当方が提供・訂正・削除できるデータは一般的に存在しません。</p>
 
-    <!-- 11. Contact -->
-    <h2>11. Contact Us</h2>
+      <p>サードパーティサービス（AdMob、RevenueCat）が収集するデータについては、上記の各プライバシーポリシーをご参照いただくか、当方までお問い合わせください。可能な範囲でサポートいたします。</p>
 
-    <div class="contact-box">
-      <p>If you have any questions, concerns, or data-related requests regarding this Privacy Policy, please contact us at:</p>
-      <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      <h2>9. セキュリティ</h2>
+
+      <p>顔の処理はすべて端末内で行われ、本アプリによる個人データの送信や保存は一切ないため、主要なセキュリティ対策はアーキテクチャ自体です。あなたのデータは端末から外に出ることがありません。当方はユーザーデータを受信・保存するサーバーを運営していません。</p>
+
+      <h2>10. ポリシーの変更</h2>
+
+      <p>このプライバシーポリシーは随時更新される可能性があります。変更があった場合はこのページに反映され、発効日が更新されます。定期的にご確認いただくことをお勧めします。変更後の本アプリの継続使用は、更新されたポリシーへの同意とみなされます。</p>
+
+      <h2>11. お問い合わせ</h2>
+
+      <div class="contact-box">
+        <p>このプライバシーポリシーに関するご質問、ご懸念、データに関するご要望については、下記までご連絡ください:</p>
+        <p style="margin-top: 12px;"><a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
+      </div>
+
+      <h2>12. 免責事項</h2>
+
+      <p>Who Looks Older? はAIを使った年齢推定をエンタメ目的で提供します。結果は正確ではなく、いかなる目的でも信頼すべきではありません。本アプリは実年齢を判定するものではなく、その出力に基づく決定を下すべきではありません。</p>
+
+      <p style="color:#888888; font-size:0.85rem; margin-top:24px;">注: この日本語訳は参考であり、英語版が正本となります。</p>
     </div>
-
-    <!-- 12. Disclaimer -->
-    <h2>12. Disclaimer</h2>
-
-    <p>Who Looks Older? provides AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon for any purpose. The App does not claim to determine actual age, and no decisions should be made based on its output.</p>
 
     <div class="footer">
-      <p>&copy; 2026 Who Looks Older? &mdash; All rights reserved.</p>
+      <p>&copy; 2026 Who Looks Older?</p>
     </div>
 
   </div>
+
+  <script>
+    function applyLang(lang) {
+      if (lang !== "en" && lang !== "ja") lang = "en";
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-lang]").forEach(el => {
+        el.classList.toggle("active", el.dataset.lang === lang);
+      });
+      const sel = document.getElementById("langSelect");
+      if (sel) sel.value = lang;
+      try { localStorage.setItem("wlo_lang", lang); } catch (_) {}
+    }
+
+    (function init() {
+      const params = new URLSearchParams(location.search);
+      const fromUrl = params.get("lang");
+      let stored = null;
+      try { stored = localStorage.getItem("wlo_lang"); } catch (_) {}
+      const browser = (navigator.language || "en").toLowerCase().startsWith("ja") ? "ja" : "en";
+      applyLang(fromUrl || stored || browser);
+      const sel = document.getElementById("langSelect");
+      if (sel) sel.addEventListener("change", e => applyLang(e.target.value));
+    })();
+  </script>
 </body>
 </html>
