@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -357,17 +357,57 @@
       color: #555555;
       font-size: 0.8rem;
     }
+
+    /* Language switcher */
+    .lang-switch {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      gap: 4px;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #333333;
+      border-radius: 50px;
+      padding: 4px;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      color: #888888;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-switch button.active {
+      background: #E4FF1A;
+      color: #111111;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Language switcher -->
+  <div class="lang-switch">
+    <button data-lang="en" type="button">EN</button>
+    <button data-lang="ja" type="button">日本語</button>
+  </div>
+
   <!-- Hero -->
   <section class="hero">
-    <span class="hero-badge">AI-Powered Face Battle</span>
+    <span class="hero-badge" data-i18n="heroBadge">AI-Powered Face Battle</span>
 
-    <h1>Who Looks<br><span class="accent">Older?</span></h1>
+    <h1><span data-i18n="h1Line1">Who Looks</span><br><span class="accent" data-i18n="h1Line2">Older?</span></h1>
 
-    <p class="tagline">Point your camera at two faces. AI decides who looks older. The free face age battle app for iPhone — perfect for parties, couples, and TikTok challenges.</p>
+    <p class="tagline" data-i18n="tagline">Point your camera at two faces. AI decides who looks older. The free face age battle app for iPhone — perfect for parties, couples, and TikTok challenges.</p>
 
     <div class="vs-display">
       <div class="face-circle left">
@@ -416,10 +456,10 @@
     </div>
 
     <div class="chips">
-      <span class="chip">AI Judge</span>
-      <span class="chip">2 Player</span>
-      <span class="chip">Instant</span>
-      <span class="chip">Free</span>
+      <span class="chip" data-i18n="chipJudge">AI Judge</span>
+      <span class="chip" data-i18n="chipPlayer">2 Player</span>
+      <span class="chip" data-i18n="chipInstant">Instant</span>
+      <span class="chip" data-i18n="chipFree">Free</span>
     </div>
 
     <div class="store-buttons">
@@ -436,67 +476,168 @@
 
   <!-- How it works -->
   <section class="section">
-    <h2 class="section-title">How It Works</h2>
+    <h2 class="section-title" data-i18n="howItWorks">How It Works</h2>
     <div class="steps">
       <div class="step">
         <div class="step-number">1</div>
-        <h3>Point</h3>
-        <p>Open the camera and get two faces in frame.</p>
+        <h3 data-i18n="step1Title">Point</h3>
+        <p data-i18n="step1Text">Open the camera and get two faces in frame.</p>
       </div>
       <div class="step">
         <div class="step-number">2</div>
-        <h3>Scan</h3>
-        <p>Tap "Scan Now" and let the AI analyze both faces.</p>
+        <h3 data-i18n="step2Title">Scan</h3>
+        <p data-i18n="step2Text">Tap "Scan Now" and let the AI analyze both faces.</p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
-        <h3>Battle!</h3>
-        <p>See who looks older and share the result.</p>
+        <h3 data-i18n="step3Title">Battle!</h3>
+        <p data-i18n="step3Text">See who looks older and share the result.</p>
       </div>
     </div>
   </section>
 
   <!-- Features -->
   <section class="section">
-    <h2 class="section-title">Features</h2>
+    <h2 class="section-title" data-i18n="featuresTitle">Features</h2>
     <div class="features">
       <div class="feature-card">
         <div class="feature-icon">&#129302;</div>
-        <h3>On-Device AI</h3>
-        <p>All face analysis runs on your phone. No images are uploaded or saved anywhere.</p>
+        <h3 data-i18n="feat1Title">On-Device AI</h3>
+        <p data-i18n="feat1Text">All face analysis runs on your phone. No images are uploaded or saved anywhere.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">&#9889;</div>
-        <h3>Instant Results</h3>
-        <p>Get age estimates in seconds with a dramatic reveal animation.</p>
+        <h3 data-i18n="feat2Title">Instant Results</h3>
+        <p data-i18n="feat2Text">Get age estimates in seconds with a dramatic reveal animation.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">&#128248;</div>
-        <h3>Share Card</h3>
-        <p>Generate a 9:16 battle card with results, perfect for Stories and Reels.</p>
+        <h3 data-i18n="feat3Title">Share Card</h3>
+        <p data-i18n="feat3Text">Generate a 9:16 battle card with results, perfect for Stories and Reels.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">&#128274;</div>
-        <h3>Privacy First</h3>
-        <p>Zero data collection. Your face never leaves your device. Period.</p>
+        <h3 data-i18n="feat4Title">Privacy First</h3>
+        <p data-i18n="feat4Text">Zero data collection. Your face never leaves your device. Period.</p>
       </div>
     </div>
   </section>
 
   <!-- Disclaimer -->
   <div class="disclaimer">
-    <p>AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon. Intended for users 13 and older.</p>
+    <p data-i18n="disclaimer">AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon. Intended for users 13 and older.</p>
   </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-links">
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-of-service.html">Terms of Service</a>
-      <a href="mailto:fukuidinotech@gmail.com">Contact</a>
+      <a href="privacy-policy.html" data-i18n="privacyLink">Privacy Policy</a>
+      <a href="terms-of-service.html" data-i18n="termsLink">Terms of Service</a>
+      <a href="mailto:fukuidinotech@gmail.com" data-i18n="contactLink">Contact</a>
     </div>
-    <p class="copyright">&copy; 2026 Who Looks Older? &mdash; All rights reserved.</p>
+    <p class="copyright" data-i18n="copyright">&copy; 2026 Who Looks Older? &mdash; All rights reserved.</p>
   </footer>
+
+  <script>
+    const i18n = {
+      en: {
+        title: "Who Looks Older? — AI Age Battle App for iPhone",
+        description: "Point your camera at two faces. AI instantly judges who looks older. The free face age battle app for iPhone — perfect for parties, couples, and TikTok challenges.",
+        heroBadge: "AI-Powered Face Battle",
+        h1Line1: "Who Looks",
+        h1Line2: "Older?",
+        tagline: "Point your camera at two faces. AI decides who looks older. The free face age battle app for iPhone — perfect for parties, couples, and family hangouts.",
+        chipJudge: "AI Judge",
+        chipPlayer: "2 Player",
+        chipInstant: "Instant",
+        chipFree: "Free",
+        howItWorks: "How It Works",
+        step1Title: "Point",
+        step1Text: "Open the camera and get two faces in frame.",
+        step2Title: "Scan",
+        step2Text: "Tap \"Scan Now\" and let the AI analyze both faces.",
+        step3Title: "Battle!",
+        step3Text: "See who looks older and share the result.",
+        featuresTitle: "Features",
+        feat1Title: "On-Device AI",
+        feat1Text: "All face analysis runs on your phone. No images are uploaded or saved anywhere.",
+        feat2Title: "Instant Results",
+        feat2Text: "Get age estimates in seconds with a dramatic reveal animation.",
+        feat3Title: "Share Card",
+        feat3Text: "Generate a 9:16 battle card with results, perfect for Stories and Reels.",
+        feat4Title: "Privacy First",
+        feat4Text: "Zero data collection. Your face never leaves your device. Period.",
+        disclaimer: "AI-powered age estimates for entertainment purposes only. Results are not accurate and should not be relied upon. Intended for users 13 and older.",
+        privacyLink: "Privacy Policy",
+        termsLink: "Terms of Service",
+        contactLink: "Contact",
+        copyright: "© 2026 Who Looks Older? — All rights reserved."
+      },
+      ja: {
+        title: "Who Looks Older? — 顔年齢バトル iPhoneアプリ",
+        description: "カメラを2人に向けるだけ。AIが顔年齢を判定し、どっちが年上に見えるかを決めます。飲み会、カップル対決、家族遊びにぴったりの無料パーティーゲーム。",
+        heroBadge: "AI顔年齢バトル",
+        h1Line1: "どっちが",
+        h1Line2: "年上？",
+        tagline: "カメラを2人に向けるだけ。AIが顔年齢を判定し、どっちが年上に見えるかを決めます。飲み会、カップル対決、家族遊びにぴったりの無料iPhoneアプリ。",
+        chipJudge: "AI判定",
+        chipPlayer: "2人対戦",
+        chipInstant: "即判定",
+        chipFree: "無料",
+        howItWorks: "遊び方",
+        step1Title: "向ける",
+        step1Text: "カメラを起動して、2人の顔をフレームに収めます。",
+        step2Title: "スキャン",
+        step2Text: "「Scan Now」をタップ。AIが両方の顔を分析します。",
+        step3Title: "バトル！",
+        step3Text: "どっちが年上に見えるかを確認して、結果をシェア。",
+        featuresTitle: "特徴",
+        feat1Title: "端末内AI",
+        feat1Text: "顔の分析はすべてあなたのスマホ内で完結。画像はどこにもアップロード・保存されません。",
+        feat2Title: "即判定",
+        feat2Text: "数秒で年齢を推定。ドラマチックな演出付き。",
+        feat3Title: "シェアカード",
+        feat3Text: "9:16のバトルカードを自動生成。ストーリーズやリールにぴったり。",
+        feat4Title: "プライバシー重視",
+        feat4Text: "データ収集ゼロ。あなたの顔は端末から外に出ません。",
+        disclaimer: "AIによる年齢推定はエンタメ目的です。正確ではなく、結果を信頼して利用しないでください。対象年齢: 13歳以上。",
+        privacyLink: "プライバシーポリシー",
+        termsLink: "利用規約",
+        contactLink: "お問い合わせ",
+        copyright: "© 2026 Who Looks Older?"
+      }
+    };
+
+    function applyLang(lang) {
+      if (!i18n[lang]) lang = "en";
+      const dict = i18n[lang];
+      document.documentElement.lang = lang;
+      document.title = dict.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", dict.description);
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] != null) el.textContent = dict[key];
+      });
+      document.querySelectorAll(".lang-switch button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+      try { localStorage.setItem("wlo_lang", lang); } catch (_) {}
+    }
+
+    (function init() {
+      const params = new URLSearchParams(location.search);
+      const fromUrl = params.get("lang");
+      let stored = null;
+      try { stored = localStorage.getItem("wlo_lang"); } catch (_) {}
+      const browser = (navigator.language || "en").toLowerCase().startsWith("ja") ? "ja" : "en";
+      const lang = fromUrl || stored || browser;
+      applyLang(lang);
+      document.querySelectorAll(".lang-switch button").forEach(btn => {
+        btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+      });
+    })();
+  </script>
 
 </body>
 </html>
