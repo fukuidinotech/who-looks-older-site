@@ -170,7 +170,7 @@
       <p>The App uses your device camera to:</p>
       <ul>
         <li>Detect faces in real time using Google ML Kit (on-device).</li>
-        <li>Estimate apparent age using a TensorFlow Lite model (on-device).</li>
+        <li>Estimate apparent age using an on-device neural network (Apple Core ML on iOS, TensorFlow Lite on Android).</li>
       </ul>
 
       <p>Camera frames are processed in memory in real time and immediately discarded. The only output retained is the estimated age as a simple integer, which is held temporarily in memory for displaying results and is not persisted after you close the App.</p>
@@ -260,7 +260,7 @@
       <p>本アプリはカメラを以下の目的で使用します:</p>
       <ul>
         <li>Google ML Kit（オンデバイス）でリアルタイムに顔を検出</li>
-        <li>TensorFlow Lite モデル（オンデバイス）で見た目の年齢を推定</li>
+        <li>端末内のニューラルネットワーク（iOS は Apple Core ML、Android は TensorFlow Lite）で見た目の年齢を推定</li>
       </ul>
 
       <p>カメラのフレームはメモリ内でリアルタイム処理され、即座に破棄されます。残るのは推定年齢の整数値のみで、結果表示のため一時的にメモリ内に保持され、アプリを閉じた後は保持されません。</p>
